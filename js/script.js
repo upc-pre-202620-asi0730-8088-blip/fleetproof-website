@@ -229,7 +229,7 @@ const translations = {
       "Academic working document. Names, prices and metrics require validation.",
 
     routeNotice:
-      "Demo route. Replace YOUR-WEB-APP.example in script.js with the real URL of your Web Application.",
+      "This route of the Web Application is not available right now. Please try again later.",
     termsTitle: "Terms of Service",
     privacyTitle: "Privacy Notice",
     close: "Close dialog",
@@ -384,7 +384,7 @@ const translations = {
       "Documento de trabajo académico. Nombres, precios y métricas requieren validación.",
 
     routeNotice:
-      "Ruta de demostración. Reemplaza YOUR-WEB-APP.example en script.js por la URL real de tu Web Application.",
+      "Esta ruta de la Web Application no está disponible en este momento. Inténtalo más tarde.",
     termsTitle: "Términos y condiciones",
     privacyTitle: "Aviso de privacidad",
     close: "Cerrar diálogo",
@@ -601,15 +601,17 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-/* Feature 5 / Commit 5 — Integration points with the future Vue Web App.
-   Replace all example URLs with the real deployed routes before acceptance. */
+/* Feature 5 / Commit 5 — Integration points with the FleetProof Vue Web App. */
+const WEB_APP_URL = "https://fleetproof-webapp.netlify.app";
+
 const APP_ROUTES = {
-  login: "https://YOUR-WEB-APP.example/login",
-  fleetOnboarding: "https://YOUR-WEB-APP.example/onboarding/company",
-  personalReport: "https://YOUR-WEB-APP.example/reports/new",
-  personalPlan: "https://YOUR-WEB-APP.example/subscriptions/personal",
-  starterPlan: "https://YOUR-WEB-APP.example/subscriptions/fleet-starter",
-  businessPlan: "https://YOUR-WEB-APP.example/subscriptions/fleet-business"
+  login: `${WEB_APP_URL}/login`,
+  register: `${WEB_APP_URL}/register`,
+  fleetOnboarding: `${WEB_APP_URL}/app/fleets`,
+  personalReport: `${WEB_APP_URL}/app/reports`,
+  personalPlan: `${WEB_APP_URL}/app/subscriptions`,
+  starterPlan: `${WEB_APP_URL}/app/subscriptions`,
+  businessPlan: `${WEB_APP_URL}/app/subscriptions`
 };
 
 const toast = document.getElementById("toast");
@@ -623,7 +625,7 @@ function showToast(message) {
 }
 
 function routeOrWarn(url) {
-  if (!url || url.includes("YOUR-WEB-APP.example")) {
+  if (!url) {
     showToast(translations[currentLanguage].routeNotice);
     return;
   }
@@ -647,7 +649,7 @@ function bindAppRoute(selector, routeKey) {
 
 function configureRoutes() {
   bindAppRoute("#login-link", "login");
-  bindAppRoute("#header-cta", "fleetOnboarding");
+  bindAppRoute("#header-cta", "register");
   bindAppRoute("#fleet-hero-cta", "fleetOnboarding");
   bindAppRoute("#fleet-solution-cta", "fleetOnboarding");
   bindAppRoute("#fleet-final-cta", "fleetOnboarding");
